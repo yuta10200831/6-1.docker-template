@@ -51,7 +51,7 @@ if (empty($title) || empty($email) || empty($content))
     <?php if(empty($errors)): ?>
       <h2>送信完了！！！！！！</h2>
       <a href="index.php">送信画面へ</a><br><br>
-      <a href="">送信履歴へ</a>
+      <a href="history.php">送信履歴へ</a>
     <?php endif; ?>
   </div>
 </body>
