@@ -12,13 +12,6 @@ $pdo = new PDO(
 $stmt = $pdo->query("SELECT * FROM contacts");
 $history = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-session_start();
-
-// 運営側のユーザーでない場合はログインページにリダイレクト
-if (!isset($_SESSION["is_admin"]) || !$_SESSION["is_admin"]) {
-    header("Location: login.php");
-    exit;
-}
 ?>
 
 <!DOCTYPE html>

@@ -11,8 +11,9 @@
         <input type="text" id="username" name="username"><br>
         <label for="password">パスワード:</label>
         <input type="password" id="password" name="password"><br>
-        <a href="index.php">新規登録！</a>
+        <input type="submit" value="新規登録">
     </form>
+
     <a href="login.php">ログイン</a>
     <a href="index.php">送信画面へ</a>
 </body>
