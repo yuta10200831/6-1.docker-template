@@ -11,8 +11,15 @@ $pdo = new PDO(
 // $historyへDBのデータを格納
 $stmt = $pdo->query("SELECT * FROM contacts");
 $history = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
 
+session_start();
+
+// 運営側のユーザーでない場合はログインページにリダイレクト
+if (!isset($_SESSION["is_admin"]) || !$_SESSION["is_admin"]) {
+    header("Location: login.php");
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -21,6 +28,17 @@ $history = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <title>投稿履歴</title>
 </head>
 <body>
+<!-- ログイン状態を確認する -->
+<?php if (!isset($_SESSION["username"])): ?>
+  <!-- 未ログインの場合、ログインボタンを表示 -->
+  <a href="login.php" class="bg-indigo-500 text-white py-2 px-6 rounded hover:bg-indigo-600">ログイン</a>
+<?php else: ?>
+  <!-- ログイン済みの場合、ユーザー名とログアウトボタンを表示 -->
+  <p>ようこそ、<?php echo $_SESSION["username"]; ?>さん！</p>
+  <a href="logout.php">ログアウト</a>
+<?php endif; ?>
+
+<!-- トップページの記述 -->
   <h2>投稿履歴</h2>
   <?php if (empty($history)): ?>
     <p>送信履歴なし</p>
