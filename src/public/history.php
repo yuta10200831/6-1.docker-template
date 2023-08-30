@@ -8,7 +8,6 @@ if (!isset($_SESSION["username"])) {
     exit;
 }
 
-// DBへ接続
 $dbUserName = 'root';
 $dbPassword = 'password';
 $pdo = new PDO(
