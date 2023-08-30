@@ -1,4 +1,13 @@
 <?php
+
+session_start();  // セッションをスタート
+
+// ログインしていない場合、ログインページにリダイレクト
+if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+    exit;
+}
+
 // DBへ接続
 $dbUserName = 'root';
 $dbPassword = 'password';
@@ -41,7 +50,11 @@ $history = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <li>
           <strong>タイトル:</strong> <?php echo $entry['title']; ?><br>
           <strong>Email:</strong> <?php echo $entry['email']; ?><br>
+          <!-- ブックマークボタン -->
           <strong>お問い合わせ内容:</strong> <?php echo $entry['content']; ?><br>
+          <a href="bookmark_toggle.php?id=<?php echo $entry['id']; ?>">
+          <?php echo (isset($entry['bookmarked']) && $entry['bookmarked'] == 1) ? '♥' : '➕'; ?>
+          </a>
         </li>
       <?php endforeach; ?>
     </ul>
