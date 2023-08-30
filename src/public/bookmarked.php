@@ -41,5 +41,6 @@ $bookmarked_entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </ul>
 <?php endif; ?>
 <a href="history.php">戻る</a>
+<a href="export_csv.php">CSVで出力</a>
 </body>
 </html>
