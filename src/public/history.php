@@ -1,6 +1,6 @@
 <?php
 
-session_start();  // セッションをスタート
+session_start();
 
 // ログインしていない場合、ログインページにリダイレクト
 if (!isset($_SESSION["username"])) {
