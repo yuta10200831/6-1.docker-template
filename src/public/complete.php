@@ -1,11 +1,19 @@
 <?php
+session_start(); // セッションを開始
+
+// ログインしていないとフォーム送信を行わない
+if (!isset($_SESSION["username"])) {
+    echo "ログインしてください。";
+    echo '<a href="index.php">戻る</a>';
+    exit; 
+}
+
 $title = $_POST["title"];
 $email = $_POST["email"];
 $content = $_POST["content"];
 
 $errors = [];
-if (empty($title) || empty($email) || empty($content))
-{
+if (empty($title) || empty($email) || empty($content)){
   $errors[] = '「タイトル」 「Email」 「お問い合わせ内容」のどれかが記入されておりません！';
 }
 
@@ -18,12 +26,11 @@ if (empty($title) || empty($email) || empty($content))
   );
 
   $stmt = $pdo->prepare("INSERT INTO contacts (
-    title, email, content
+    title, email, content, bookmarked
   ) VALUES (
-    :title, :email, :content
+    :title, :email, :content, 0
   )");
   
-  //登録するデータをセット
   $stmt->bindParam( ':title', $title, PDO::PARAM_STR);
   $stmt->bindParam( ':email', $email, PDO::PARAM_STR);
   $stmt->bindParam( ':content', $content, PDO::PARAM_STR);
