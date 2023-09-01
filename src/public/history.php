@@ -1,6 +1,6 @@
 <?php
 
-session_start();  // セッションをスタート
+session_start();
 
 // ログインしていない場合、ログインページにリダイレクト
 if (!isset($_SESSION["username"])) {
@@ -8,7 +8,6 @@ if (!isset($_SESSION["username"])) {
     exit;
 }
 
-// DBへ接続
 $dbUserName = 'root';
 $dbPassword = 'password';
 $pdo = new PDO(
