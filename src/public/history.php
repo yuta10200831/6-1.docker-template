@@ -37,7 +37,8 @@ $history = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php else: ?>
   <!-- ログイン済みの場合、ユーザー名とログアウトボタンを表示 -->
   <p>ようこそ、<?php echo $_SESSION["username"]; ?>さん！</p>
-  <a href="logout.php">ログアウト</a>
+  <a href="bookmarked.php">ブックマークした投稿を表示</a>
+  <a href="export_csv.php">CSVで出力</a>
 <?php endif; ?>
 
 <!-- トップページの記述 -->
